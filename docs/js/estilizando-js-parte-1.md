@@ -143,3 +143,5 @@ Resumindo:
 > const deixa o código mais seguro, evitando que alguém troque a variável inteira por engano. Para
 > objetos/arrays, ainda é possível alterar o conteúdo interno, então cuidado se precisar de
 > imutabilidade total.
+
+Tudo ok até então. Pra não estender muito, fica o link pra [parte 2](estilizando-js-parte-2.md).

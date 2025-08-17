@@ -94,7 +94,9 @@ public async Task<Product> FindOneByIdAsync(Guid id)
 Já contei que eu curto um bolinho 🧁? Nada melhor do que seguir uma receita, passo a passo pra te
 "convencer" sobre as minhas convenções.
 
-[Estilizando JavaScript - Parte 1](docs/js/estilizando-js-parte-1.md)
+[Estilizando JavaScript - Parte 1](docs/js/estilizando-js-parte-1.md)  
+[Estilizando JavaScript - Parte 2](docs/js/estilizando-js-parte-2.md)  
+[Estilizando JavaScript - Parte 3](docs/js/estilizando-js-parte-3.md)
 
 ## Referencias
 
