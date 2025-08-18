@@ -96,7 +96,7 @@ Já contei que eu curto um bolinho 🧁? Nada melhor do que seguir uma receita, 
 
 [Estilizando JavaScript - Parte 1](docs/js/estilizando-js-parte-1.md)  
 [Estilizando JavaScript - Parte 2](docs/js/estilizando-js-parte-2.md)  
-[Estilizando JavaScript - Parte 3](docs/js/estilizando-js-parte-3.md)
+[Estilizando JavaScript - Parte 3](docs/js/estilizando-js-parte-3.md)  
 [Estilizando JavaScript - Parte 4](docs/js/estilizando-js-parte-4.md)
 
 ## Referencias

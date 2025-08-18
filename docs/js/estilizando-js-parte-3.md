@@ -22,6 +22,7 @@ Exemplos:
 | ❌ Português | `somar()`, `retornaOUsuario()` | `totalEAtualizado`, `listaDeIDsUsuarios` |
 | ✅ Inglês    | `sum()`, `getUser()`           | `totalUpdated`, `userIdList()`           |
 
+> [!NOTE]  
 > Declarações em inglês tornam o código mais curto, consistente e compreensível por desenvolvedores
 > de diferentes idiomas.
 
@@ -72,6 +73,7 @@ assíncrono para:
 - Ler ou escrever arquivos.
 - Operações com timers ou delays.
 
+> [!NOTE]  
 > A ideia é que qualquer operação que retorne uma **Promise** deve estar dentro de uma função async,
 > para poder usar await e manter o código legível.
 

@@ -23,13 +23,13 @@ var numero = 10;
 var numero = 20; // ❌ sobrescreveu o valor sem aviso
 console.log(numero); // 20
 
-// 2- Escopo de bloco ignorado.
+// 2 - Escopo de bloco ignorado.
 if (true) {
   var numeroDentroDoIf = 50; // deveria ficar "dentro" do if
 }
 console.log(numeroDentroDoIf); // 50, mesmo fora do bloco
 
-// 3-  Escopo de função vs global.
+// 3 - Escopo de função vs global.
 function teste() {
   var numeroDaFuncao = 100; // só existe dentro da função
   console.log(numeroDaFuncao); // 100
