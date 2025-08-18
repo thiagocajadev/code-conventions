@@ -1,7 +1,7 @@
 # Estilizando JS - Parte 2
 
 Nessa parte, vamos olhar com carinho sobre o padrão de escrita `camelCase` e um pouco mais sobre
-como as `funções` limpas e polidas ajudam demais no código.
+como as `funções` limpas e polidas ajudam na compreensão do código.
 
 ## Escrevendo no estilo camelo?
 
@@ -69,15 +69,15 @@ export default calculadora;
 const resultadoDaSoma = calculadora.soma(1, 1); // 2
 ```
 
-Resumindo:
-
-> **Função** → código independente, não associado a nenhum objeto ou classe.  
+> [!NOTE]  
+> **Função** → código independente, não associado a nenhum objeto ou classe.
+>
 > **Método** → função que está associada a um objeto ou classe.
 
 Aqui alguns exemplos de recomendações de escrita de funções:
 
 ```js
-// Exemplo - 1
+// Exemplo 1
 // ❌ Código confuso, difícil de ler. As variáveis não são descritivas
 // e não há espaçamento.
 function s(v1, v2) {
@@ -109,7 +109,7 @@ const calculadora = {
 const resultadoDaSoma = calculadora.soma(2, 3);
 console.log(resultadoDaSoma); // 5
 
-// Exemplo - 2
+// Exemplo 2
 // ❌ Código confuso, inline, sem espaçamento e parâmetros genéricos.
 const calculadora2 = {
   soma: function (a, b) {
@@ -136,7 +136,7 @@ const calculadora = {
 const resultado = calculadora.soma(2, 3);
 console.log(resultado); // 5
 
-// Exemplo - 3
+// Exemplo 3
 // ❌ Código confuso, nomes mistos e inconsistentes
 function somar(a, b) {
   return a + b;

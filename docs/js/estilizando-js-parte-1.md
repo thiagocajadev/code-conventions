@@ -14,22 +14,22 @@ comportamentos inesperados fora de funções.
 
 Abaixo exemplos que causam problemas:
 
-> Se quiser testar de forma simples, abra o navegador e entre no DevTools apertando F12. Vá no
-> console, copie e cole os exemplos e aperte ENTER pra ver o resultado.
+> Se quiser testar de forma simples, abra o navegador e entre no **DevTools** apertando **F12**. Vá
+> no console, copie e cole os exemplos e aperte **ENTER** pra ver o resultado.
 
 ```js
-// 1 - Re-declaração sem aviso.
+// Exemplo 1 - Re-declaração sem aviso.
 var numero = 10;
 var numero = 20; // ❌ sobrescreveu o valor sem aviso
 console.log(numero); // 20
 
-// 2 - Escopo de bloco ignorado.
+// Exemplo 2 - Escopo de bloco ignorado.
 if (true) {
   var numeroDentroDoIf = 50; // deveria ficar "dentro" do if
 }
 console.log(numeroDentroDoIf); // 50, mesmo fora do bloco
 
-// 3 - Escopo de função vs global.
+// Exemplo 3 - Escopo de função vs global.
 function teste() {
   var numeroDaFuncao = 100; // só existe dentro da função
   console.log(numeroDaFuncao); // 100
@@ -37,7 +37,7 @@ function teste() {
 teste();
 console.log(typeof numeroDaFuncao); // undefined, não existe fora da função
 
-// 4 - Variável global acidental.
+// Exemplo 4 - Variável global acidental.
 function outroTeste() {
   numeroAcidental = 500; // ❌ sem var/let/const → vira global
 }
@@ -64,14 +64,14 @@ precisar reatribuir algum valor, ai você usa **let**.
 - **let**: mutável, escopo de bloco, use só quando necessário.
 
 ```js
-// 1 - Usando const (valor não muda)
+// Exemplo 1 - Usando const (valor não muda)
 const nome = "Thiago";
 console.log("Nome:", nome);
 
-// Tentativa de mudar const → erro
-// nome = "Ronaldo"; // ❌ TypeError: Assignment to constant variable.
+// ❌ Tentativa de mudar const gera um erro.
+// nome = "Ronaldo"; TypeError: Assignment to constant variable.
 
-// 2 - Usando let (valor pode mudar)
+// Exemplo 2 - Usando let (valor pode mudar)
 let idade = 77;
 console.log("Idade inicial:", idade);
 
@@ -79,15 +79,15 @@ console.log("Idade inicial:", idade);
 idade += 1;
 console.log("Idade atualizada:", idade);
 
-// Exemplo em loop com let
+// Loop com let
 for (let i = 0; i < 3; i++) {
   console.log("Contador:", i);
 }
 ```
 
 Usando **const** você **protege a referência da variável**, impedindo que ela seja reatribuída. No
-caso de um array (vetor) ou objeto, não é possível redeclarar o mesmo, podendo apenas alterar os
-elementos dentro dele.
+caso de um **array** (vetor) ou **objeto**, não é possível redeclarar o mesmo. As únicas alterações
+permitidas são nos **elementos** e **propriedades** dentro da **constante**.
 
 ```js
 // Usando const com número (imutável).
@@ -124,16 +124,16 @@ const carro = {
 
 console.log("Carro inicial:", carro);
 
-// Podemos alterar propriedades do objeto.
+// Permitido alterar as propriedades do objeto.
 carro.modelo = "Versa"; // ✅ altera a propriedade
 carro.ano = 2025; // ✅ altera a propriedade
 console.log("Carro atualizado:", carro);
 
-// Podemos adicionar novas propriedades
+// Permitido adicionar novas propriedades
 carro.cor = "prata"; // ✅ funciona
 console.log("Carro com cor:", carro);
 
-// Mas não podemos reatribuir o objeto inteiro
+// Não é possível reatribuir o objeto inteiro
 // carro = {};
 // ❌ TypeError: Assignment to constant variable.
 ```

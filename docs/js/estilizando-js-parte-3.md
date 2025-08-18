@@ -1,7 +1,7 @@
 # Estilizando JS - Parte 3
 
 Nessa parte, temos recomendações para trabalhar padronizando a declaração de variáveis e funções
-`em ingles`. Falando mais um pouco sobre **funções** (**métodos**, pra não esquecer 😁) e a
+`em inglês`. Falando mais um pouco sobre **funções** (que em alguns casos são **métodos** 😁) e a
 serventia do `async/await`.
 
 ## Convenção para nomear variáveis e métodos
@@ -34,10 +34,11 @@ devolver uma resposta.
 
 No JavaScript, usamos as palavras reservadas **async** e **await**:
 
-- **async** define uma função como assíncrona, permitindo que ela utilize **await**.
-
-- **await** pausa a execução da função até que a `Promise` seja resolvida, garantindo que o
-  resultado esteja disponível antes de continuar.
+> [!IMPORTANT]  
+> **async** -> define uma função como assíncrona, permitindo que ela utilize **await**.
+>
+> **await** -> pausa a execução da função até que a `Promise` seja resolvida, garantindo que o
+> resultado esteja disponível antes de continuar.
 
 ```js
 // Exemplo simples. Busca um usuário.
@@ -74,8 +75,8 @@ assíncrono para:
 - Operações com timers ou delays.
 
 > [!NOTE]  
-> A ideia é que qualquer operação que retorne uma **Promise** deve estar dentro de uma função async,
-> para poder usar await e manter o código legível.
+> A ideia é que qualquer operação que retorne uma **Promise** deve estar dentro de uma função
+> **async**, para poder usar **await** e manter o código legível.
 
 ```js
 // Exemplo buscando os dados em uma API, retornando a resposta no formato JSON.
@@ -220,8 +221,6 @@ Vantagens da operação assíncrona:
 - Código fica linear e legível, sem callbacks aninhados.
 - Outras operações podem rodar enquanto a Promise está pendente.
 
-Vou deixar um tópico para entender o uso de **await new Promise(...)** e **await fetch(...)**.
-
 ### Diferença entre `await new Promise` e `await fetch`
 
 **`await new Promise(...)`**
@@ -251,10 +250,9 @@ console.log(data);
 Esse código depende de um recurso externo, pode demorar algum tempo para processar e retornar os
 dados reais.
 
-Resumindo:
-
-- `new Promise` → criamos a Promise manualmente (simulação ou lógica interna).
-- `fetch` → Promise já existente (resultado de operação externa).
+> [!NOTE]  
+> `new Promise` → criamos a Promise manualmente (simulação ou lógica interna).  
+> `fetch` → Promise já existente (resultado de operação externa).
 
 ### Diferença entre JSON e Objeto JavaScript
 
@@ -295,7 +293,7 @@ formato **JSON** e faz a conversão para um **objeto JavaScript**. Para uma **st
 conversão.
 
 ```js
-// ❌ Exemplo - 1
+// ❌ Exemplo 1
 // JSON como texto puro (string). O texto não é manipulável como objeto.
 const jsonResponse = '{ "id": 1, "nome": "Thiago" }';
 console.log(jsonResponse);
@@ -306,7 +304,7 @@ const data = JSON.parse(jsonResponse);
 console.log(data);
 // Saída: { id: 1, nome: "Thiago" }
 
-// ✅ Exemplo - 2
+// ✅ Exemplo 2
 // JSON retornado de uma API com fetch(). O objeto JS é manipulável.
 async function fetchUser() {
   const response = await fetch("https://api.exemplo.com/usuarios");

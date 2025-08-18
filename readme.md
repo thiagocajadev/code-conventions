@@ -1,10 +1,10 @@
 # Code Conventions
 
-Olá Dev! Nesse projeto quero documentar convenções e boas práticas para estilizar a escrita e
-leitura de códigos **JavaScript** e **C#**.
+Olá Dev! Nesse projeto quero documentar convenções e boas práticas, estilizando a escrita e leitura
+de códigos em **JavaScript** e **C#**.
 
-Como no dia a dia as linguagens acabam sendo utilizadas em conjunto, vou aproveitar a ocasião para
-comparar as semelhanças e diferenças entre ambas.
+Uso as duas linguagens no dia a dia em conjunto, então vou aproveitar a ocasião para comparar as
+diferenças e semelhanças entre ambas.
 
 Aqui um pequeno spoiler em **JavaScript**:
 

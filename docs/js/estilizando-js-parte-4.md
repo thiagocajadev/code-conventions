@@ -1,7 +1,7 @@
 # Estilizando JS - Parte 4
 
-Nessa parte, veja como lidar com o `tratamento de erros` de forma mais profissional. Além disso, use
-a técnica do `direct return` deixa o código mais linear.
+Nessa parte, veja como lidar com o `tratamento de erros` de forma mais profissional. Além disso,
+usar a técnica do `direct return` deixa o código mais linear.
 
 ## Tratando Erros
 
@@ -10,28 +10,28 @@ erro certo**. Quando for preciso entender a causa do problema, capturar e lança
 erro deixa a manutenção mais rápida e clara.
 
 ```js
-// Função simulando operação que pode falhar
+// Função simulando operação que pode falhar.
 async function getProduct(id) {
   if (id !== 1) {
     throw new Error("Produto não encontrado"); // simula falha
   }
-  return { id: 1, name: "Produto Exemplo" }; // sucesso -> produto com id 1.
+  return { id: 1, name: "Produto Exemplo" }; // sucesso -> produto com id 1
 }
 
-// Função principal para testar no console
+// Função principal para testar no console.
 async function run() {
   try {
     const product1 = await getProduct(1);
     console.log("Sucesso:", product1);
 
-    const product2 = await getProduct(2); // id 2 não existe e vai lançar um erro.
+    const product2 = await getProduct(2); // id 2 não existe e vai lançar um erro
     console.log("Sucesso:", product2);
   } catch (error) {
     console.error("Erro capturado:", error.message);
   }
 }
 
-// Executa no console
+// Executa no console.
 run();
 ```
 
@@ -43,13 +43,13 @@ Agora, se a consulta ao banco falhar, usamos `try/catch` e lançamos um `Interna
 outro erro específico.
 
 ```js
-// Exemplo - 1. Simulando problema de negócio, passando um Id de Produto que não existe.
+// Exemplo 1 - Simulando problema de negócio, passando um Id de Produto que não existe.
 
-// Classes de erro didáticas
+// Classes de erro didáticas.
 class NotFoundError extends Error {}
 class InternalServerError extends Error {}
 
-// Função simulando problema de negócio (produto não encontrado)
+// Função simulando problema de negócio (produto não encontrado).
 async function getProduct(id) {
   if (id !== 1) {
     throw new NotFoundError(`"Produto ID: ${id} não encontrado"`); // problema de negócio
@@ -57,7 +57,7 @@ async function getProduct(id) {
   return { id: 1, name: "Produto Exemplo" }; // sucesso
 }
 
-// Função principal simulando falha técnica (ex: consulta ao banco)
+// Função principal simulando falha técnica (ex: consulta ao banco).
 async function run() {
   try {
     const product = await getProduct(2); // lança NotFoundError
@@ -66,23 +66,23 @@ async function run() {
     if (err instanceof NotFoundError) {
       console.warn("Erro de negócio:", err.message);
     } else {
-      // captura qualquer outro erro técnico e lança InternalServerError
+      // captura qualquer outro erro técnico e lança InternalServerError.
       throw new InternalServerError("Falha técnica ao buscar produto");
     }
   }
 }
 
-// Executa no console
+// Executa no console.
 run();
 
-// Exemplo - 2. Simulando uma falha técnica.
+// Exemplo 2 - Simulando uma falha técnica.
 class NotFoundError extends Error {}
 class InternalServerError extends Error {}
 
 async function getProduct(id) {
-  if (id !== 1) throw new NotFoundError("Produto não encontrado"); // problema de negócio.
+  if (id !== 1) throw new NotFoundError("Produto não encontrado"); // problema de negócio
 
-  if (Math.random() < 0.5) throw new Error("Conexão com o banco falhou"); // falha técnica. 50% chance de erro.
+  if (Math.random() < 0.5) throw new Error("Conexão com o banco falhou"); // falha técnica. 50% chance de erro
 
   return { id: 1, name: "Produto Exemplo" };
 }
@@ -133,7 +133,7 @@ Use **try/catch** se:
   tratado/logado antes de responder.
 
 ```js
-// ❌ Tratamento de erro genérico e mal feito
+// ❌ Tratamento de erro genérico e mal feito.
 async function findOneById(id) {
   try {
     const results = await database.query({
@@ -161,7 +161,7 @@ Desvantagens:
 - Retorno null oculta a causa real.
 
 ```js
-// ✅ Tratamento de erro estruturado e claro
+// ✅ Tratamento de erro estruturado e claro.
 async function findOneById(id) {
   try {
     const results = await database.query({
@@ -179,11 +179,11 @@ async function findOneById(id) {
     return results.rows[0];
   } catch (error) {
     if (error instanceof NotFoundError) {
-      // Repassa erros de negócio sem mascarar
+      // Repassa erros de negócio sem mascarar.
       throw error;
     }
 
-    // Captura exceções inesperadas (ex: conexão DB caiu)
+    // Captura exceções inesperadas (ex: conexão DB caiu).
     throw new InternalServerError({
       message: "Falha ao consultar o banco de dados.",
       cause: error,
@@ -198,14 +198,14 @@ Vantagens:
 - Não engole erros, propaga com contexto.
 - Permite tratamento diferenciado na camada superior.
 
+### Abstraindo Erros
+
 É uma boa prática abstrair a lógica com tratamento de erros específicos, reaproveitando em toda a
 aplicação.
 
 ```js
 // ✅ Abstraindo erros em uma classe, padronizando o retorno para melhor entendimento e resolução.
-
-// errors.js
-// Classe base
+// errors.js - Classe base.
 export class BaseError extends Error {
   constructor({ name, message, action, statusCode, cause }) {
     super(message, { cause });
@@ -227,7 +227,7 @@ export class BaseError extends Error {
   }
 }
 
-// Erro interno
+// Erro interno.
 export class InternalServerError extends BaseError {
   constructor({ cause } = {}) {
     super({
@@ -240,7 +240,7 @@ export class InternalServerError extends BaseError {
   }
 }
 
-// Não encontrado
+// Não encontrado.
 export class NotFoundError extends BaseError {
   constructor({ message, action, cause } = {}) {
     super({
@@ -253,7 +253,7 @@ export class NotFoundError extends BaseError {
   }
 }
 
-// Erro de validação
+// Erro de validação.
 export class ValidationError extends BaseError {
   constructor({ message, action, cause } = {}) {
     super({
@@ -268,7 +268,7 @@ export class ValidationError extends BaseError {
 ```
 
 Com a lógica centralizada, podemos fazer toda parte de tratamento de erros de conexão com o banco de
-dados dentro do da classe **database**, por exemplo.
+dados dentro da classe **database**, por exemplo.
 
 ## Retornando Direto
 
@@ -277,7 +277,7 @@ legibilidade e a eficiência do código. Essa abordagem consiste em **retornar u
 de uma função**. Os detalhes de implementação ficam encapsulados em um método auxiliar.
 
 ```js
-// ❌ Sem direct return. Mais verboso, else desnecessário e leitura dificultada:
+// ❌ Sem direct return. Mais verboso, else desnecessário e leitura dificultada.
 async function findOneById(id) {
   let productFound = null;
 
@@ -355,3 +355,5 @@ Vantagens:
 - Menos código e menos variáveis inúteis.
 - Fluxo de leitura mais claro.
 - Facilita manutenção – menos linhas, menos chance de bug, mais fácil de entender de cara.
+
+É isso ai! Bons estudos e bons códigos.
