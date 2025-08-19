@@ -326,6 +326,51 @@ var response = await http.GetStringAsync("https://api.exemplo.com/users");
 Console.WriteLine(response);
 ```
 
+Um último exemplo, no caso de uma aplicação com mais camadas. **UI (Tela) -> Serviço ->
+Repositório**:
+
+```csharp
+// Camada de controller ou UI
+var product = await service.GetProductAsync(1); // await -> precisa esperar o resultado de service
+
+// Camada de serviço
+public async Task<Product> GetProductAsync(int id)
+{
+  var product = await repo.FindOneByIdAsync(id); // await -> precisa esperar o resultado de repo
+  return product;
+}
+
+// Camada de repositório
+public async Task<Product> FindOneByIdAsync(int id)
+{
+  // await necessário para manipular o resultado antes de retornar.
+  // Sem await pra comparar, é gerado um erro.
+  var product = await database.QuerySingleAsync<Product>(
+    "SELECT TOP 1 * FROM Products WHERE Id = @id;",
+    new { id }
+  );
+
+  // caso o `await` não fosse declarado na chamada do database,
+  // product não teria valor pra ser comparado,
+  // retornando apenas uma Task<Product>, não o resultado.
+  if (product == null)
+    throw new NotFoundError(
+      "O id informado não foi encontrado no sistema.",
+      "Verifique se o id foi digitado corretamente."
+    );
+
+  return product;
+}
+```
+
+> [!IMPORTANT]  
+>  **await** acompanha o fluxo até o ponto em que você realmente precisa do valor retornado. Cada camada
+> que consome o valor deve aplicar **await**, ou então você estará lidando apenas com a **Task**, não
+> com o resultado real.
+>
+> Não há problema em usar **await por precaução**; garante que você trabalha com o **valor real** e
+> não com a **Task**.
+
 ### Diferença entre JSON e Objeto C#
 
 JSON é apenas um **texto estruturado no formato { "chave": "valor" }**. Já em **C#**, manipulamos
