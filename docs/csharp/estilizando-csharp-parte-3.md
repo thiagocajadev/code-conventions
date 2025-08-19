@@ -126,6 +126,10 @@ static async Task FetchUserAsync(int delayInMilliseconds, string nome)
 }
 ```
 
+> [!NOTE]  
+> Uma convenção em C# é adicionar ao nome de todos os métodos assíncronos o sufixo **Async**.  
+> Ex: FetchUser**Async**(...){..}
+
 ### E o que é esse `<T>`?
 
 Em C#, quando você vê algo como `Task<T>` ou `List<T>`, o `<T>` indica um tipo genérico. Como a
@@ -326,26 +330,28 @@ var response = await http.GetStringAsync("https://api.exemplo.com/users");
 Console.WriteLine(response);
 ```
 
+### Um exemplo em MVC
+
 Um último exemplo, no caso de uma aplicação com mais camadas. **UI (Tela) -> Serviço ->
 Repositório**:
 
 ```csharp
 // Camada de controller ou UI
-var product = await service.GetProductAsync(1); // await -> precisa esperar o resultado de service
+var product = await service.GetProductByIdAsync(1); // await -> precisa esperar o resultado de service
 
 // Camada de serviço
-public async Task<Product> GetProductAsync(int id)
+public async Task<Product> GetProductByIdAsync(int id)
 {
-  var product = await repo.FindOneByIdAsync(id); // await -> precisa esperar o resultado de repo
+  var product = await repo.GetProductByIdAsync(id); // await -> precisa esperar o resultado de repo
   return product;
 }
 
 // Camada de repositório
-public async Task<Product> FindOneByIdAsync(int id)
+public async Task<Product> GetProductByIdAsync(int id)
 {
   // await necessário para manipular o resultado antes de retornar.
   // Sem await pra comparar, é gerado um erro.
-  var product = await database.QuerySingleAsync<Product>(
+  var product = await database.RunSelectQuery<Product>(
     "SELECT TOP 1 * FROM Products WHERE Id = @id;",
     new { id }
   );

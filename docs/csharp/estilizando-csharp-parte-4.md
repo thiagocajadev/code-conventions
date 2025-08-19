@@ -113,7 +113,7 @@ async Task RunAsync()
 {
   try
   {
-    var product = await GetProduct(1);
+    var product = await GetProductAsync(1);
     Console.WriteLine("Sucesso: " + product.Name);
   }
   catch (Exception error)
@@ -132,7 +132,7 @@ async Task RunAsync()
 }
 
 // Função simulando falha técnica e problema de negócio.
-async Task<Product> GetProduct(int id)
+async Task<Product> GetProductAsync(int id)
 {
   await Task.Delay(10); // Simula operação assíncrona
 
@@ -227,7 +227,7 @@ Desvantagens:
 
 ```js
 // ✅ Tratamento de erro estruturado e claro.
-public async Task<Product> FindOneByIdStructured(int id)
+public async Task<Product> FindOneByIdStructuredAsync(int id)
 {
   try
   {
@@ -282,7 +282,7 @@ aplicação.
 
 ```js
 // ✅ Abstraindo erros em uma classe, padronizando o retorno para melhor entendimento e resolução.
-// BaseError.js - Classe base para exceções em C#.
+// Classe base para exceções em C#.
 public class BaseError : Exception
 {
   public string Action { get; }
@@ -368,7 +368,7 @@ legibilidade e a eficiência do código. Essa abordagem consiste em **retornar u
 de uma função**. Os detalhes de implementação ficam encapsulados em um método auxiliar.
 
 ```csharp
-// ❌ Sem direct return. Mais verboso e com variável auxiliar desnecessária
+// ❌ Sem direct return. Mais verboso, sem sufixo padrão e com variável auxiliar desnecessária
 public async Task<Product> FindOneByIdVerbose(int id)
 {
   Product? productFound = null;
@@ -414,19 +414,19 @@ Desvantagens:
 // ✅ Com direct return. Abstração da lógica, retorno direto no topo do método
 
 // Executando o método
-var productFound = await FindOneById(id);
+var productFound = await FindOneByIdAsync(id);
 
 // Detalhes de implementação
-public async Task<Product> FindOneById(int id)
+public async Task<Product> FindOneByIdAsync(int id)
 {
   // Retorno direto, usando função auxiliar para encapsular detalhes da query
   var productFound = await RunSelectQueryAsync(id);
   return productFound;
 
   // Função auxiliar que executa a query e lança erro se não encontrar resultado
-  async Task<Product> RunSelectQuery(int productId)
+  async Task<Product> RunSelectQueryAsync(int productId)
   {
-    var result = await database.QuerySingleAsync<Product>(
+    var result = await database.RunSelectQueryAsync<Product>(
       query: """
         SELECT TOP 1 *
         FROM Products

@@ -164,4 +164,9 @@ const resultado = calculadora.soma(2, 3);
 console.log(resultado); // 5
 ```
 
+> [!NOTE]  
+> Todo **código é uma representação** de algo que precisamos manipular. Procure trabalhar de forma
+> organizada, separando os **contextos**, colocando cada **bloco de código** em seus respectivos
+> arquivos e classes.
+
 [Parte 3](estilizando-js-parte-3.md) pra quem quer uma convenção de como nomear as coisas.

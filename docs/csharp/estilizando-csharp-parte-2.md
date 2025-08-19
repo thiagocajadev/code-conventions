@@ -293,5 +293,10 @@ int resultado = calculadora.Soma(2, 3);
 Console.WriteLine(resultado); // 5
 ```
 
+> [!NOTE]  
+> Todo **código é uma representação** de algo que precisamos manipular. Procure trabalhar de forma
+> organizada, separando os **contextos**, colocando cada **bloco de código** em seus respectivos
+> arquivos e classes.
+
 [Parte 3](estilizando-csharp-parte-3.md) com algumas dicas pra usar nomes em inglês e intro para
 métodos assíncronos.
