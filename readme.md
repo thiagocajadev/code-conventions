@@ -104,7 +104,8 @@ Já contei que eu curto um bolinho 🧁? Nada melhor do que seguir uma receita, 
 ## C#
 
 [Estilizando C-Sharp - Parte 1](docs/csharp/estilizando-csharp-parte-1.md)  
-[Estilizando C-Sharp - Parte 2](docs/csharp/estilizando-csharp-parte-2.md)
+[Estilizando C-Sharp - Parte 2](docs/csharp/estilizando-csharp-parte-2.md)  
+[Estilizando C-Sharp - Parte 3](docs/csharp/estilizando-csharp-parte-3.md)
 
 ### Referências
 
