@@ -1,6 +1,6 @@
 # Estilizando C# - Parte 1
 
-Pra quem já trabalhou com **Java** e **VB**, partir pro **Csharp** é uma ótima escolha. O **C#** é
+Pra quem já trabalhou com **Java** e **VB**, partir pro **C-Sharp** é uma ótima escolha. O **C#** é
 uma linguagem robusta e fortemente tipada, ou seja, garante segurança de tipos em tempo de
 compilação, evitando muitos erros comuns de programação.
 

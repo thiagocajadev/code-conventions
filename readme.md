@@ -94,12 +94,19 @@ public async Task<Product> FindOneByIdAsync(Guid id)
 Já contei que eu curto um bolinho 🧁? Nada melhor do que seguir uma receita, passo a passo pra te
 "convencer" sobre as minhas convenções.
 
+## Javascript
+
 [Estilizando JavaScript - Parte 1](docs/js/estilizando-js-parte-1.md)  
 [Estilizando JavaScript - Parte 2](docs/js/estilizando-js-parte-2.md)  
 [Estilizando JavaScript - Parte 3](docs/js/estilizando-js-parte-3.md)  
 [Estilizando JavaScript - Parte 4](docs/js/estilizando-js-parte-4.md)
 
-## Referencias
+## C#
+
+[Estilizando C-Sharp - Parte 1](docs/csharp/estilizando-csharp-parte-1.md)  
+[Estilizando C-Sharp - Parte 2](docs/csharp/estilizando-csharp-parte-2.md)
+
+### Referências
 
 [Airbnb JavaScript Code Style](https://github.com/airbnb/javascript?tab=readme-ov-file)  
 [Mozilla JavaScript Code Style](https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Code_style_guide/JavaScript)  

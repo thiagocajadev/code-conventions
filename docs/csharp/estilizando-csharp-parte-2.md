@@ -1,9 +1,9 @@
-# Estilizando JS - Parte 2
+# Estilizando C# - Parte 2
 
-Nessa parte, vamos olhar com carinho sobre as convenções de nomes em Csharp e como `métodos` limpos
+Nessa parte, vamos olhar com carinho sobre as convenções de nomes em C-Sharp e como `métodos` limpos
 e polidos ajudam na compreensão do código.
 
-## Convenções de Nomes em C#
+## Convenções de Nomes
 
 No **C#**, usamos diferentes estilos de escrita **(Case)** dependendo do tipo de elemento no código.
 
