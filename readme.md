@@ -99,7 +99,8 @@ te "convencer" sobre as minhas convenções.
 [Estilizando JavaScript - Parte 1](docs/js/estilizando-js-parte-1.md)  
 [Estilizando JavaScript - Parte 2](docs/js/estilizando-js-parte-2.md)  
 [Estilizando JavaScript - Parte 3](docs/js/estilizando-js-parte-3.md)  
-[Estilizando JavaScript - Parte 4](docs/js/estilizando-js-parte-4.md)
+[Estilizando JavaScript - Parte 4](docs/js/estilizando-js-parte-4.md)  
+[Estilizando JavaScript - Parte 5](docs/js/estilizando-js-parte-5.md)
 
 ## C#
 

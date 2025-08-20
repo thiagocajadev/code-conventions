@@ -312,4 +312,6 @@ const age = 17;
 Minha preferência pessoal é por usar **Guard Clauses**. Organizar a validação e trazer retorno das
 exceções no topo, torna mais simples tratar o comportamento da aplicação.
 
+### Iterações
+
 É isso ai! Bons estudos e bons códigos.
