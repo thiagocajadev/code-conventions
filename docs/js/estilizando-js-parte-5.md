@@ -657,7 +657,7 @@ function canGetLicenseDriver(candidatesList) {
 ```
 
 E um último exemplo bem abstraído entre uma **requisição** e **resposta** http, onde é feito um
-**post** com **um texto json** enviando uma lista de candidatos para para rota de uma **API**, que
+**post** com **um texto json** enviando uma lista de candidatos para rota de uma **API**, que
 retorna quem pode obter a habilitação de motorista.
 
 Fluxo de Processo: Requisição -> Processamento -> Resposta.
@@ -676,7 +676,7 @@ Fluxo de Processo: Requisição -> Processamento -> Resposta.
 // }
 
 // Requisição.
-const jsonDocument = `
+const jsonDocumentRequestBody = `
 {
   "candidates": [
     { "id": 1, "name": "João", "age": 17 },
@@ -689,10 +689,10 @@ const jsonDocument = `
 }`;
 
 // Converte JSON string para objeto JavaScript.
-const requestBody = JSON.parse(jsonDocument);
+const request = JSON.parse(jsonDocumentRequestBody);
 
 // resultado da conversão.
-// const requestBody = {
+// const request = {
 //   candidates: [
 //     { id: 1, name: "João", age: 17 },
 //     { id: 2, name: "Maria", age: 18 },
@@ -704,17 +704,17 @@ const requestBody = JSON.parse(jsonDocument);
 // };
 
 // Processamento.
-canGetLicenseDriver(requestBody);
+canGetLicenseDriver(request);
 
 // Função simulando endpoint da API.
-function canGetLicenseDriver(requestBody) {
-  const { candidates } = requestBody;
+function canGetLicenseDriver(request) {
+  const { candidates } = request;
 
   if (!Array.isArray(candidates) || candidates.length === 0) {
     return { message: "Nenhum candidato fornecido." };
   }
 
-  // Mensagens auxiliares.
+  // Variáveis auxiliares.
   const messageTooYoung = "ainda não pode dirigir";
   const messageProvisoryLicense = "pode obter a PPD";
   const messageDriverLicense = "pode obter a CNH";
@@ -736,8 +736,8 @@ function canGetLicenseDriver(requestBody) {
   }
 
   // Resposta.
-  // Converte a resposta para JSON texto com indentação.
-  const results = JSON.stringify({ candidates: result }, null, 2);
+  // Converte o resultado do processamento em JSON texto com indentação.
+  const response = JSON.stringify({ candidates: result }, null, 2);
 
   // {
   //   "candidates": [
@@ -768,10 +768,10 @@ function canGetLicenseDriver(requestBody) {
   //   ]
   // }
 
-  // Exibe no console o retorno em objeto JS.
+  // Exibe no console o retorno em objeto JavaScript.
   console.log({ candidates: result });
 
-  // Retorna texto json, com escapes no console.
-  return results;
+  // Retorna texto JSON, com escapes no console.
+  return response;
 }
 ```
