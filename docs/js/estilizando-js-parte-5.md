@@ -182,10 +182,10 @@ Pra deixar o código linear, temos algumas estratégias de boas práticas como:
   else.
 
 ```js
-// Exemplo 1 - Early Return
+// Exemplo 1 - Early Return.
 // Aqui o `if` tem o retorno antecipado dentro da função (early return).
 // Checagens extras não são feitas quando uma condição é atendida,
-// Reduzindo a necessidade de processamento.
+// reduzindo a necessidade de processamento.
 const age = 17;
 
 canDrive(age);
@@ -203,9 +203,9 @@ function canDrive(age) {
 ```
 
 ```js
-// Exemplo 2 - Guard Clauses
+// Exemplo 2 - Guard Clauses.
 // Combinado com o retorno antecipado, valida as exceções primeiro.
-// Caso passe nas validações, segue o fluxo principal
+// Caso passe nas validações, segue o fluxo principal.
 const age = 17;
 
 canDrive(age);
@@ -227,28 +227,28 @@ function canDrive(age) {
 ```
 
 ```js
-// Exemplo 3 - Lookup Table com Objeto
+// Exemplo 3 - Lookup Table com Objeto.
 // A tabela de consulta é um conceito de mapeamento chave-valor para substituir múltiplos if/else.
 // No JavaScript, podemos implementar com um objeto ou um Map.
 // Cada chave representa uma condição e o valor é a mensagem correspondente.
 // Uma função auxiliar decide qual chave usar baseado na idade.
 const age = 17;
 
-// Lookup Table mapeando condições para mensagens
+// Lookup Table mapeando condições para mensagens.
 const messagesObject = {
   menor: "Você ainda não pode obter a carteira de motorista.",
   ppd: "Você pode obter a Permissão para Dirigir (PPD).",
   cnh: "Você pode obter a Carteira Nacional de Habilitação (CNH).",
 };
 
-// Função para obter a chave correta baseado na idade
+// Função para obter a chave correta baseado na idade.
 function getKey(age) {
   if (age < 18) return "menor";
   if (age === 18) return "ppd";
   return "cnh";
 }
 
-// Usa a Lookup Table para imprimir a mensagem
+// Usa a Lookup Table para imprimir a mensagem.
 console.log(messagesObject[getKey(age)]);
 ```
 
@@ -368,8 +368,9 @@ do {
 Temos 2 variações do **for** pra fazer loop (laço) e percorrer sobre as **chaves (índices)** e
 **valores diretos**.
 
-- **for...in** -> Percorre as **chaves** ou índices de objetos e arrays.
-- **for...of** -> Percorre os **valores** diretamente de arrays, strings ou qualquer iterável.
+- **for...in** ⚠️ -> Percorre as **chaves** ou índices de objetos e arrays.
+
+- **for...of** ✅ -> Percorre os **valores** diretamente de arrays, strings ou qualquer iterável.
 
 ```js
 // Exemplo 1 - for...in com objeto
@@ -467,16 +468,51 @@ numbers.forEach((value, index) => {
 });
 ```
 
+> [!WARNING]  
+> **Observação sobre objetos:**  
+> Para percorrer objetos, `for...in` percorre diretamente todas as propriedades enumeráveis,
+> incluindo as herdadas do protótipo, o que pode gerar comportamento inesperado.
+>
+> Por isso, uma abordagem mais clara e segura é usar `Object.keys(obj)` ou `Object.entries(obj)`,
+> que transformam o objeto em **arrays de chaves** ou **pares [chave, valor]**.
+>
+> Depois disso, você percorre com `for...of`, garantindo que só iterará sobre os elementos que
+> deseja, melhorando legibilidade e performance.
+
+```js
+// Exemplo 7 - Iterando objeto com Object.keys.
+const user = { name: "Thiago", age: 72 };
+
+// Object.keys retorna um array com as chaves.
+for (const key of Object.keys(user)) {
+  console.log(key, "->", user[key]);
+}
+// Saída:
+// name -> Thiago
+// age -> 72
+```
+
+```js
+// Exemplo 8 - Iterando objeto com Object.entries
+// Object.entries retorna um array de [chave, valor]
+for (const [key, value] of Object.entries(user)) {
+  console.log(key, "->", value);
+}
+// Saída:
+// name -> Thiago
+// age -> 72
+```
+
 **Resumindo**:
 
 - Para **arrays e iteráveis** → prefira **`for...of`**.
-- Para **objetos** → use **`for...in`** ou métodos como **`Object.keys()`** / **`Object.entries()`**
-  para maior performance e clareza.
+- Para **objetos** → use métodos como **`Object.keys()`** / **`Object.entries()`** para maior
+  performance e clareza, e apenas como última alternativa use **`for...in`**.
 
 ### Iterações - Nível 3
 
-Aprofundando entre equilíbrio e performance, temos os resultados dos testes de
-[benchmark com um array com 1M de elementos](https://medium.com/@robinviktorsson/comparing-the-performance-of-different-loop-techniques-in-javascript-typescript-1540c62d1f97):
+Aprofundando entre equilíbrio e performance, veja esse
+[benchmark testando 1M de elementos:](https://medium.com/@robinviktorsson/comparing-the-performance-of-different-loop-techniques-in-javascript-typescript-1540c62d1f97)
 
 | Loop / Método  | Tempo de Execução |
 | -------------- | ----------------- |
@@ -501,21 +537,21 @@ Minha preferência sempre será por um **código claro e fácil de manter**, ten
 latência, segurança e alta performance**.
 
 ```js
-// Combinando os exemplos até agora
-// Array com lista de idades dos candidatos a tirar a CNH
+// Combinando os exemplos até agora.
+// Array com lista de idades dos candidatos a tirar a CNH.
 const ageList = [17, 18, 20, -5, "vinte"];
 canGetLicenseDriver(ageList);
 
-// Função que valida uma lista de idades e retorna quem pode dirigir
+// Função que valida uma lista de idades e retorna quem pode dirigir.
 function canGetLicenseDriver(ageList) {
-  // Guard clause: sai cedo se não houver dados
+  // Guard clause: sai cedo se não houver dados.
   if (!Array.isArray(ageList) || ageList.length === 0) {
     console.log("Nenhuma idade fornecida.");
     return;
   }
 
   for (const age of ageList) {
-    // Ignora valores inválidos
+    // Ignora valores inválidos.
     if (typeof age !== "number" || age < 0) continue;
 
     if (age < 18) {
@@ -724,8 +760,12 @@ function canGetLicenseDriver(request) {
   for (const { id, name, age } of candidates) {
     if (typeof age !== "number" || age < 0) continue;
 
-    const status =
-      age < 18 ? messageTooYoung : age === 18 ? messageProvisoryLicense : messageDriverLicense;
+    // prettier-ignore
+    const status = age < 18
+      ? messageTooYoung 
+      : age === 18
+        ? messageProvisoryLicense
+        : messageDriverLicense;
 
     result.push({
       id,
@@ -775,3 +815,7 @@ function canGetLicenseDriver(request) {
   return response;
 }
 ```
+
+Com isso, concluímos essa "pequena" saga. 😅
+
+Bons estudos e bons códigos!
