@@ -117,7 +117,9 @@ waitSecondsCallback(3, (result) => {
   console.log(result);
   console.log("Fim");
 });
+```
 
+```js
 // ❌ Exemplo com Promise e .then (melhor que callback, mas ainda verboso).
 // O código fica problemático conforme cresce a indentação,
 // devido a várias operações encadeadas.
@@ -132,7 +134,9 @@ waitSecondsThen(3).then((result) => {
   console.log(result);
   console.log("Fim");
 });
+```
 
+```js
 // ❌ Exemplo com Promise e vários .then encadeados.
 // A leitura começa a ficar confusa quando há muitas etapas.
 function waitSecondsThen(seconds) {
@@ -183,7 +187,9 @@ console.log("Início");
 const result = waitSeconds(3); // trava a aplicação por 3 segundos
 console.log(result);
 console.log("Fim");
+```
 
+```js
 // ✅ Operação assíncrona usando async/await.
 function waitSecondsWithAsyncAwait(seconds) {
   return new Promise((resolve) => {
@@ -199,7 +205,9 @@ async function runCode() {
 }
 
 runCode();
+```
 
+```js
 // ✅ Como ficaria a chamada do método "waitSecondsThen", que usa vários ".then()".
 // Com async/await, o mesmo código fica linear e limpo:
 async function runWithoutNestedThen() {

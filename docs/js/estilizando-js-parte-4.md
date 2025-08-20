@@ -74,7 +74,9 @@ async function run() {
 
 // Executa no console.
 run();
+```
 
+```js
 // Exemplo 2 - Simulando uma falha técnica.
 class NotFoundError extends Error {}
 class InternalServerError extends Error {}
@@ -356,4 +358,4 @@ Vantagens:
 - Fluxo de leitura mais claro.
 - Facilita manutenção – menos linhas, menos chance de bug, mais fácil de entender de cara.
 
-É isso ai! Bons estudos e bons códigos.
+Adicionada [parte 5](estilizando-js-parte-5.md), com recomendações sobre **controle de fluxos**.

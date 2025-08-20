@@ -108,7 +108,9 @@ const calculadora = {
 
 const resultadoDaSoma = calculadora.soma(2, 3);
 console.log(resultadoDaSoma); // 5
+```
 
+```js
 // Exemplo 2
 // ❌ Código confuso, inline, sem espaçamento e parâmetros genéricos.
 const calculadora2 = {
@@ -135,7 +137,9 @@ const calculadora = {
 
 const resultado = calculadora.soma(2, 3);
 console.log(resultado); // 5
+```
 
+```js
 // Exemplo 3
 // ❌ Código confuso, nomes mistos e inconsistentes
 function somar(a, b) {

@@ -47,7 +47,7 @@ async function findOneById(id) {
 }
 ```
 
-E o mesmo exemplo de código em **C sharp**:
+E o mesmo exemplo de código em **C#**:
 
 ```csharp
 // Chamada de método de forma limpa, com a lógica organizada em abstração.
@@ -91,8 +91,8 @@ public async Task<Product> FindOneByIdAsync(Guid id)
 }
 ```
 
-Já contei que eu curto um bolinho 🧁? Nada melhor do que seguir uma receita, passo a passo pra te
-"convencer" sobre as minhas convenções.
+Já contei que eu curto um bolinho 🧁? Nada melhor do que seguir uma receita, **passo a passo** pra
+te "convencer" sobre as minhas convenções.
 
 ## Javascript
 
