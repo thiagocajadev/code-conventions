@@ -235,7 +235,7 @@ function canDrive(age) {
 const age = 17;
 
 // Lookup Table mapeando condições para mensagens
-const mensagens = {
+const messagesObject = {
   menor: "Você ainda não pode obter a carteira de motorista.",
   ppd: "Você pode obter a Permissão para Dirigir (PPD).",
   cnh: "Você pode obter a Carteira Nacional de Habilitação (CNH).",
@@ -249,7 +249,7 @@ function getKey(age) {
 }
 
 // Usa a Lookup Table para imprimir a mensagem
-console.log(mensagens[getKey(age)]);
+console.log(messagesObject[getKey(age)]);
 ```
 
 ```js
@@ -259,7 +259,7 @@ console.log(mensagens[getKey(age)]);
 const age = 17;
 
 // Lookup Table usando Map
-const mensagensMap = new Map([
+const messagesMap = new Map([
   ["menor", "Você ainda não pode obter a carteira de motorista."],
   ["ppd", "Você pode obter a Permissão para Dirigir (PPD)."],
   ["cnh", "Você pode obter a Carteira Nacional de Habilitação (CNH)."],
@@ -273,7 +273,7 @@ function getKey(age) {
 }
 
 // Consulta a Lookup Table usando Map
-console.log(mensagensMap.get(getKey(age)));
+console.log(messagesMap.get(getKey(age)));
 ```
 
 ```js
@@ -281,14 +281,14 @@ console.log(mensagensMap.get(getKey(age)));
 const age = 17;
 
 // Cria o Map diretamente com chaves e mensagens
-const mensagensMap = new Map([
+const messagesMap = new Map([
   ["menor", "Você ainda não pode obter a carteira de motorista."],
   ["ppd", "Você pode obter a Permissão para Dirigir (PPD)."],
   ["cnh", "Você pode obter a Carteira Nacional de Habilitação (CNH)."],
 ]);
 
 // Determina a chave inline e já busca no Map
-console.log(mensagensMap.get(age < 18 ? "menor" : age === 18 ? "ppd" : "cnh"));
+console.log(messagesMap.get(age < 18 ? "menor" : age === 18 ? "ppd" : "cnh"));
 ```
 
 ```js
@@ -312,6 +312,466 @@ const age = 17;
 Minha preferência pessoal é por usar **Guard Clauses**. Organizar a validação e trazer retorno das
 exceções no topo, torna mais simples tratar o comportamento da aplicação.
 
-### Iterações
+### Iterações - Nível 1
 
-É isso ai! Bons estudos e bons códigos.
+**Iterar** significa percorrer elementos de uma coleção ou repetir um bloco de código várias vezes,
+passo a passo. **Iterar -> andar pelos elementos**.
+
+Use o `for` em **loops controlados por contador**, quando você sabe **quantas vezes quer repetir** o
+bloco de código.
+
+```js
+// Exemplo 1 - Incrementa valores. Números de 1 a 5.
+// Por convenção o nome da variável é a letra `i`.
+for (let i = 1; i <= 5; i++) {
+  // i vai de 1 a 5
+  console.log(i);
+}
+```
+
+```js
+// Exemplo 2 - Decrementa valores. Números de 5 a 1.
+for (let i = 5; i >= 1; i--) {
+  // i vai de 5 a 1
+  console.log(i);
+}
+```
+
+Use o `while` quando a execução do loop depender de **uma condição que deve ser verificada antes**
+de cada iteração.
+
+```js
+// Exemplo 3 - Incrementa valores usando while. Números de 1 a 5.
+let i = 1;
+
+while (i <= 5) {
+  console.log(i);
+  i++; // incrementa o contador
+}
+```
+
+Use o `do...while` quando você quiser que o bloco de código seja executado **pelo menos uma vez**,
+mesmo que a condição seja falsa inicialmente.
+
+```js
+// Exemplo 4 - Incrementa valores usando do...while. Números de 1 a 5.
+let j = 1;
+
+do {
+  console.log(j);
+  j++; // incrementa o contador
+} while (j <= 5);
+```
+
+### Iterações - Nível 2
+
+Temos 2 variações do **for** pra fazer loop (laço) e percorrer sobre as **chaves (índices)** e
+**valores diretos**.
+
+- **for...in** -> Percorre as **chaves** ou índices de objetos e arrays.
+- **for...of** -> Percorre os **valores** diretamente de arrays, strings ou qualquer iterável.
+
+```js
+// Exemplo 1 - for...in com objeto
+const user = { name: "Thiago", age: 72 };
+
+for (const key in user) {
+  console.log(key, "->", user[key]);
+}
+// Saída:
+// name -> Thiago
+// age -> 72
+```
+
+```js
+// Exemplo 2 - for...in com array
+const numbers = [10, 20, 30];
+
+for (const index in numbers) {
+  console.log(index, "->", numbers[index]);
+}
+// Saída:
+// 0 -> 10
+// 1 -> 20
+// 2 -> 30
+```
+
+Geralmente, **`for...of`** é mais **performático** que **`for...in`** para **arrays**. O `for...in`
+percorre todas as propriedades **enumeráveis**, incluindo as herdadas do protótipo, o que adiciona
+**overhead (processamento extra)**.
+
+```js
+// Exemplo 3 - for...of com array.
+const numbers = [10, 20, 30];
+
+for (const value of numbers) {
+  console.log(value);
+}
+// Saída:
+// 10
+// 20
+// 30
+```
+
+```js
+// Exemplo 4 - for...of com string, verificando cada letra.
+for (const letter of "JS") {
+  console.log(letter);
+}
+// Saída:
+// J
+// S
+```
+
+```js
+// Exemplo 5 - for...of com Map, iterando sobre os pares [chave, valor].
+const capitals = new Map([
+  ["Brasil", "Brasília"],
+  ["França", "Paris"],
+  ["Japão", "Tóquio"],
+]);
+
+for (const [country, capital] of capitals) {
+  console.log(`${country} -> ${capital}`);
+}
+// Saída:
+// Brasil -> Brasília
+// França -> Paris
+// Japão -> Tóquio
+```
+
+```js
+// Exemplo 6 - for...of com Set. Percorre cada valor do Set, já que não existem índices.
+const numbers = new Set([10, 20, 30]);
+
+for (const num of numbers) {
+  console.log(num);
+}
+// Saída:
+// 10
+// 20
+// 30
+```
+
+Em JavaScript, `for...of` funciona de forma muito parecida com o **for-each** de outras linguagens
+(Java, C#, Python, etc.), porque percorre os **valores do iterável diretamente**, sem verificar
+propriedades do protótipo.
+
+```js
+// Arrays possuem a função forEach, que anda por cada elemento do array.
+const numbers = [10, 20, 30];
+
+// Percorre cada valor do array e executa a função callback
+numbers.forEach((value, index) => {
+  console.log(`Índice: ${index}, Valor: ${value}`);
+});
+```
+
+**Resumindo**:
+
+- Para **arrays e iteráveis** → prefira **`for...of`**.
+- Para **objetos** → use **`for...in`** ou métodos como **`Object.keys()`** / **`Object.entries()`**
+  para maior performance e clareza.
+
+### Iterações - Nível 3
+
+Aprofundando entre equilíbrio e performance, temos os resultados dos testes de
+[benchmark com um array com 1M de elementos](https://medium.com/@robinviktorsson/comparing-the-performance-of-different-loop-techniques-in-javascript-typescript-1540c62d1f97):
+
+| Loop / Método  | Tempo de Execução |
+| -------------- | ----------------- |
+| for-loop       | 26.905 ms         |
+| while-loop     | 20.662 ms         |
+| for-of-loop    | 128.958 ms        |
+| forEach-method | 200.12 ms         |
+| map-method     | 338.333 ms        |
+| reduce-method  | 124.49 ms         |
+| for-in-loop    | 3.553 s           |
+
+> [!NOTE]
+>
+> `for` e `while` são mais rápidos para loops simples sobre arrays.
+>
+> `for-of`, `forEach`, `map` e `reduce` têm overhead extra por funções internas e abstrações.
+>
+> `for-in` é **extremamente lento para arrays**, porque percorre todas as propriedades enumeráveis,
+> incluindo as herdadas.
+
+Minha preferência sempre será por um **código claro e fácil de manter**, tendo em vista **baixa
+latência, segurança e alta performance**.
+
+```js
+// Combinando os exemplos até agora
+// Array com lista de idades dos candidatos a tirar a CNH
+const ageList = [17, 18, 20, -5, "vinte"];
+canGetLicenseDriver(ageList);
+
+// Função que valida uma lista de idades e retorna quem pode dirigir
+function canGetLicenseDriver(ageList) {
+  // Guard clause: sai cedo se não houver dados
+  if (!Array.isArray(ageList) || ageList.length === 0) {
+    console.log("Nenhuma idade fornecida.");
+    return;
+  }
+
+  for (const age of ageList) {
+    // Ignora valores inválidos
+    if (typeof age !== "number" || age < 0) continue;
+
+    if (age < 18) {
+      console.log(`Idade ${age}: ainda não pode dirigir.`);
+    } else if (age === 18) {
+      console.log(`Idade ${age}: pode obter a PPD.`);
+    } else {
+      console.log(`Idade ${age}: pode obter a CNH.`);
+    }
+  }
+}
+
+// Saída:
+// Idade 17: ainda não pode dirigir.
+// Idade 18: pode obter a PPD.
+// Idade 20: pode obter a CNH.
+```
+
+```js
+// Mesmo exemplo mais enxuto, com mais elementos no vetor (array).
+const ageList = [17, 18, 20, -5, "vinte", "Thiago", 2];
+canGetLicenseDriver(ageList);
+
+function canGetLicenseDriver(ageList) {
+  if (!Array.isArray(ageList) || ageList.length === 0) {
+    return console.log("Nenhuma idade fornecida.");
+  }
+
+  for (const age of ageList) {
+    if (typeof age !== "number" || age < 0) continue;
+
+    // prettier-ignore
+    const message = age < 18
+        ? `Idade ${age}: ainda não pode dirigir.`
+        : age === 18
+          ? `Idade ${age}: pode obter a PPD.`
+          : `Idade ${age}: pode obter a CNH.`;
+
+    console.log(message);
+  }
+}
+
+// Saída:
+// Idade 17: ainda não pode dirigir.
+// Idade 18: pode obter a PPD.
+// Idade 20: pode obter a CNH.
+// Idade 2: ainda não pode dirigir.
+```
+
+```js
+// Lista de candidatos como objetos
+const candidatesList = [
+  { id: 1, name: "João", age: 17 },
+  { id: 2, name: "Maria", age: 18 },
+  { id: 3, name: "Pedro", age: 20 },
+  { id: 4, name: "Ana", age: -5 },
+  { id: 5, name: "Thiago", age: "vinte" },
+  { id: 6, name: "Lucas", age: 2 },
+];
+
+canGetLicenseDriver(candidatesList);
+
+function canGetLicenseDriver(candidatesList) {
+  // Guard clause: sai cedo se não houver dados
+  if (!Array.isArray(candidatesList) || candidatesList.length === 0) {
+    return console.log("Nenhum candidato fornecido.");
+  }
+
+  // Desestrutura cada objeto da lista para obter id, name e age
+  for (const { id, name, age } of candidatesList) {
+    // Ignora candidatos com idade inválida
+    if (typeof age !== "number" || age < 0) continue;
+
+    // prettier-ignore
+    // Mensagem com ternário para simplificar if/else
+    const message = age < 18
+        ? `Candidato ${name} (ID: ${id}, idade: ${age}) ainda não pode dirigir.`
+        : age === 18
+          ? `Candidato ${name} (ID: ${id}, idade: ${age}) pode obter a PPD.`
+          : `Candidato ${name} (ID: ${id}, idade: ${age}) pode obter a CNH.`;
+
+    console.log(message);
+  }
+}
+
+// Saída:
+// Candidato João (ID: 1, idade: 17) ainda não pode dirigir.
+// Candidato Maria (ID: 2, idade: 18) pode obter a PPD.
+// Candidato Pedro (ID: 3, idade: 20) pode obter a CNH.
+// Candidato Lucas (ID: 6, idade: 2) ainda não pode dirigir.
+```
+
+```js
+// Mesmo exemplo acima, visando menos redundância e clareza.
+// Lista de candidatos como objetos
+const candidatesList = [
+  { id: 1, name: "João", age: 17 },
+  { id: 2, name: "Maria", age: 18 },
+  { id: 3, name: "Pedro", age: 20 },
+  { id: 4, name: "Ana", age: -5 },
+  { id: 5, name: "Thiago", age: "vinte" },
+  { id: 6, name: "Lucas", age: 2 },
+];
+
+canGetLicenseDriver(candidatesList);
+
+function canGetLicenseDriver(candidatesList) {
+  if (!Array.isArray(candidatesList) || candidatesList.length === 0) {
+    return console.log("Nenhum candidato fornecido.");
+  }
+
+  // Mensagens auxiliares
+  const messageTooYoung = "ainda não pode dirigir";
+  const messageProvisoryLicense = "pode obter a PPD";
+  const messageDriverLicense = "pode obter a CNH";
+
+  for (const { id, name, age } of candidatesList) {
+    if (typeof age !== "number" || age < 0) continue;
+
+    // prettier-ignore
+    // Escolhe a mensagem baseado na idade.
+    const status = age < 18
+        ? messageTooYoung
+        : age === 18
+          ? messageProvisoryLicense
+          : messageDriverLicense;
+
+    const message = `Candidato ${name} (ID: ${id}, idade: ${age}) ${status}.`;
+
+    console.log(message);
+  }
+}
+
+// Saída:
+// Candidato João (ID: 1, idade: 17) ainda não pode dirigir.
+// Candidato Maria (ID: 2, idade: 18) pode obter a PPD.
+// Candidato Pedro (ID: 3, idade: 20) pode obter a CNH.
+// Candidato Lucas (ID: 6, idade: 2) ainda não pode dirigir.
+```
+
+E um último exemplo bem abstraído entre uma **requisição** e **resposta** http, onde é feito um
+**post** com **um texto json** enviando uma lista de candidatos para para rota de uma **API**, que
+retorna quem pode obter a habilitação de motorista.
+
+Fluxo de Processo: Requisição -> Processamento -> Resposta.
+
+```js
+// Exemplo de JSON enviado no body da requisição POST para https://api.example.com/api/v1/drivers/license
+// {
+//   "candidates": [
+//     { "id": 1, "name": "João", "age": 17 },
+//     { "id": 2, "name": "Maria", "age": 18 },
+//     { "id": 3, "name": "Pedro", "age": 20 },
+//     { "id": 4, "name": "Ana", "age": -5 },
+//     { "id": 5, "name": "Thiago", "age": "vinte" },
+//     { "id": 6, "name": "Lucas", "age": 2 }
+//   ]
+// }
+
+// Requisição.
+const jsonDocument = `
+{
+  "candidates": [
+    { "id": 1, "name": "João", "age": 17 },
+    { "id": 2, "name": "Maria", "age": 18 },
+    { "id": 3, "name": "Pedro", "age": 20 },
+    { "id": 4, "name": "Ana", "age": -5 },
+    { "id": 5, "name": "Thiago", "age": "vinte" },
+    { "id": 6, "name": "Lucas", "age": 2 }
+  ]
+}`;
+
+// Converte JSON string para objeto JavaScript.
+const requestBody = JSON.parse(jsonDocument);
+
+// resultado da conversão.
+// const requestBody = {
+//   candidates: [
+//     { id: 1, name: "João", age: 17 },
+//     { id: 2, name: "Maria", age: 18 },
+//     { id: 3, name: "Pedro", age: 20 },
+//     { id: 4, name: "Ana", age: -5 },
+//     { id: 5, name: "Thiago", age: "vinte" },
+//     { id: 6, name: "Lucas", age: 2 },
+//   ],
+// };
+
+// Processamento.
+canGetLicenseDriver(requestBody);
+
+// Função simulando endpoint da API.
+function canGetLicenseDriver(requestBody) {
+  const { candidates } = requestBody;
+
+  if (!Array.isArray(candidates) || candidates.length === 0) {
+    return { message: "Nenhum candidato fornecido." };
+  }
+
+  // Mensagens auxiliares.
+  const messageTooYoung = "ainda não pode dirigir";
+  const messageProvisoryLicense = "pode obter a PPD";
+  const messageDriverLicense = "pode obter a CNH";
+
+  const result = [];
+
+  for (const { id, name, age } of candidates) {
+    if (typeof age !== "number" || age < 0) continue;
+
+    const status =
+      age < 18 ? messageTooYoung : age === 18 ? messageProvisoryLicense : messageDriverLicense;
+
+    result.push({
+      id,
+      name,
+      age,
+      status,
+    });
+  }
+
+  // Resposta.
+  // Converte a resposta para JSON texto com indentação.
+  const results = JSON.stringify({ candidates: result }, null, 2);
+
+  // {
+  //   "candidates": [
+  //     {
+  //       "id": 1,
+  //       "name": "João",
+  //       "age": 17,
+  //       "status": "ainda não pode dirigir"
+  //     },
+  //     {
+  //       "id": 2,
+  //       "name": "Maria",
+  //       "age": 18,
+  //       "status": "pode obter a PPD"
+  //     },
+  //     {
+  //       "id": 3,
+  //       "name": "Pedro",
+  //       "age": 20,
+  //       "status": "pode obter a CNH"
+  //     },
+  //     {
+  //       "id": 6,
+  //       "name": "Lucas",
+  //       "age": 2,
+  //       "status": "ainda não pode dirigir"
+  //     }
+  //   ]
+  // }
+
+  // Exibe no console o retorno em objeto JS.
+  console.log({ candidates: result });
+
+  // Retorna texto json, com escapes no console.
+  return results;
+}
+```
