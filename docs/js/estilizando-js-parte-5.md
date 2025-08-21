@@ -154,7 +154,7 @@ switch (corDoFarol) {
 
 ```js
 1 === "1"; // false (tipos diferentes)
-1 == "1"; // true  (coerção converte string para número)
+1 == "1"; // true (coerção converte string para número)
 ```
 
 Sempre que possível, use `===` para evitar surpresas com coerção de tipo. O `==` pode gerar
@@ -253,46 +253,46 @@ console.log(messagesObject[getKey(age)]);
 ```
 
 ```js
-// Exemplo 4 - Lookup Table com Map
+// Exemplo 4 - Lookup Table com Map.
 // Cada chave representa uma condição e o valor é a mensagem correspondente.
 // Uma função auxiliar decide qual chave usar baseado na idade.
 const age = 17;
 
-// Lookup Table usando Map
+// Lookup Table usando Map.
 const messagesMap = new Map([
   ["menor", "Você ainda não pode obter a carteira de motorista."],
   ["ppd", "Você pode obter a Permissão para Dirigir (PPD)."],
   ["cnh", "Você pode obter a Carteira Nacional de Habilitação (CNH)."],
 ]);
 
-// Função para obter a chave correta baseado na idade
+// Função para obter a chave correta baseado na idade.
 function getKey(age) {
   if (age < 18) return "menor";
   if (age === 18) return "ppd";
   return "cnh";
 }
 
-// Consulta a Lookup Table usando Map
+// Consulta a Lookup Table usando Map.
 console.log(messagesMap.get(getKey(age)));
 ```
 
 ```js
-// Exemplo 5 - Lookup Table com Map - Versão inline
+// Exemplo 5 - Lookup Table com Map - Versão inline.
 const age = 17;
 
-// Cria o Map diretamente com chaves e mensagens
+// Cria o Map diretamente com chaves e mensagens.
 const messagesMap = new Map([
   ["menor", "Você ainda não pode obter a carteira de motorista."],
   ["ppd", "Você pode obter a Permissão para Dirigir (PPD)."],
   ["cnh", "Você pode obter a Carteira Nacional de Habilitação (CNH)."],
 ]);
 
-// Determina a chave inline e já busca no Map
+// Determina a chave inline e já busca no Map.
 console.log(messagesMap.get(age < 18 ? "menor" : age === 18 ? "ppd" : "cnh"));
 ```
 
 ```js
-// Exemplo 6 - Circuit-Break
+// Exemplo 6 - Circuit-Break.
 // Executa cada condição de forma independente usando curto-circuito.
 // (condição) && ação → se a condição for verdadeira, a ação é executada.
 // Cada linha é independente, funcionando como um mini “curto-circuito",
@@ -368,12 +368,12 @@ do {
 Temos 2 variações do **for** pra fazer loop (laço) e percorrer sobre as **chaves (índices)** e
 **valores diretos**.
 
-- **for...in** ⚠️ -> Percorre as **chaves** ou índices de objetos e arrays.
+- ⚠️ **for...in** -> Percorre as **chaves** ou índices de objetos e arrays.
 
-- **for...of** ✅ -> Percorre os **valores** diretamente de arrays, strings ou qualquer iterável.
+- ✅ **for...of** -> Percorre os **valores** diretamente de arrays, strings ou qualquer iterável.
 
 ```js
-// Exemplo 1 - for...in com objeto
+// Exemplo 1 - for...in com objeto.
 const user = { name: "Thiago", age: 72 };
 
 for (const key in user) {
@@ -385,7 +385,7 @@ for (const key in user) {
 ```
 
 ```js
-// Exemplo 2 - for...in com array
+// Exemplo 2 - for...in com array.
 const numbers = [10, 20, 30];
 
 for (const index in numbers) {
@@ -462,7 +462,7 @@ propriedades do protótipo.
 // Arrays possuem a função forEach, que anda por cada elemento do array.
 const numbers = [10, 20, 30];
 
-// Percorre cada valor do array e executa a função callback
+// Percorre cada valor do array e executa a função callback.
 numbers.forEach((value, index) => {
   console.log(`Índice: ${index}, Valor: ${value}`);
 });
@@ -493,8 +493,8 @@ for (const key of Object.keys(user)) {
 ```
 
 ```js
-// Exemplo 8 - Iterando objeto com Object.entries
-// Object.entries retorna um array de [chave, valor]
+// Exemplo 8 - Iterando objeto com Object.entries.
+// Object.entries retorna um array de [chave, valor].
 for (const [key, value] of Object.entries(user)) {
   console.log(key, "->", value);
 }
@@ -602,7 +602,7 @@ function canGetLicenseDriver(ageList) {
 ```
 
 ```js
-// Lista de candidatos como objetos
+// Lista de candidatos como objetos.
 const candidatesList = [
   { id: 1, name: "João", age: 17 },
   { id: 2, name: "Maria", age: 18 },
@@ -615,18 +615,18 @@ const candidatesList = [
 canGetLicenseDriver(candidatesList);
 
 function canGetLicenseDriver(candidatesList) {
-  // Guard clause: sai cedo se não houver dados
+  // Guard clause: sai cedo se não houver dados.
   if (!Array.isArray(candidatesList) || candidatesList.length === 0) {
     return console.log("Nenhum candidato fornecido.");
   }
 
-  // Desestrutura cada objeto da lista para obter id, name e age
+  // Desestrutura cada objeto da lista para obter id, name e age.
   for (const { id, name, age } of candidatesList) {
-    // Ignora candidatos com idade inválida
+    // Ignora candidatos com idade inválida.
     if (typeof age !== "number" || age < 0) continue;
 
     // prettier-ignore
-    // Mensagem com ternário para simplificar if/else
+    // Mensagem com ternário para simplificar if/else.
     const message = age < 18
         ? `Candidato ${name} (ID: ${id}, idade: ${age}) ainda não pode dirigir.`
         : age === 18
@@ -646,7 +646,7 @@ function canGetLicenseDriver(candidatesList) {
 
 ```js
 // Mesmo exemplo acima, visando menos redundância e clareza.
-// Lista de candidatos como objetos
+// Lista de candidatos como objetos.
 const candidatesList = [
   { id: 1, name: "João", age: 17 },
   { id: 2, name: "Maria", age: 18 },
@@ -663,7 +663,7 @@ function canGetLicenseDriver(candidatesList) {
     return console.log("Nenhum candidato fornecido.");
   }
 
-  // Mensagens auxiliares
+  // Mensagens auxiliares.
   const messageTooYoung = "ainda não pode dirigir";
   const messageProvisoryLicense = "pode obter a PPD";
   const messageDriverLicense = "pode obter a CNH";
@@ -692,9 +692,9 @@ function canGetLicenseDriver(candidatesList) {
 // Candidato Lucas (ID: 6, idade: 2) ainda não pode dirigir.
 ```
 
-E um último exemplo bem abstraído entre uma **requisição** e **resposta** http, onde é feito um
-**post** com **um texto json** enviando uma lista de candidatos para rota de uma **API**, que
-retorna quem pode obter a habilitação de motorista.
+Pra finalizar, um exemplo bem abstraído entre uma **requisição** e **resposta** HTTP, simulando um
+**POST** contra um **ENDPOINT**, enviando uma lista de candidatos em texto no formato JSON,
+retornando quem pode obter a habilitação de motorista.
 
 Fluxo de Processo: Requisição -> Processamento -> Resposta.
 
@@ -727,7 +727,7 @@ const jsonDocumentRequestBody = `
 // Converte JSON string para objeto JavaScript.
 const request = JSON.parse(jsonDocumentRequestBody);
 
-// resultado da conversão.
+// Resultado da conversão.
 // const request = {
 //   candidates: [
 //     { id: 1, name: "João", age: 17 },
