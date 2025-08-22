@@ -22,9 +22,26 @@ Exemplos:
 | ❌ Português | `somar()`, `retornaOUsuario()` | `totalEAtualizado`, `listaDeIDsUsuarios` |
 | ✅ Inglês    | `sum()`, `getUser()`           | `totalUpdated`, `userIdList()`           |
 
-> [!NOTE]  
+> [!TIP]  
 > Declarações em inglês tornam o código mais curto, consistente e compreensível por desenvolvedores
-> de diferentes idiomas.
+> de diferentes idiomas. Escreva usando **Ordem natural (semantic ordering).**
+>
+> Sempre componha o nome seguindo a estrutura natural do inglês: **ação** + **objeto** +
+> **detalhe/contexto**.
+
+Exemplos adicionais:
+
+| ❌ Errado                 | ✅ Correto                | Motivo                                       |
+| ------------------------- | ------------------------- | -------------------------------------------- |
+| `getProfileUser()`        | `getUserProfile()`        | Ordem natural em inglês: _user profile_      |
+| `updateStatusOrder()`     | `updateOrderStatus()`     | Status pertence ao pedido                    |
+| `calculateTotalInvoice()` | `calculateInvoiceTotal()` | “invoice total” é a expressão comum          |
+| `findAddressCustomer()`   | `findCustomerAddress()`   | Address of the customer → _customer address_ |
+
+Isso evita inversões estranhas como **getLicenseDriver** (parece que vai buscar uma licença de
+“driver”, o software) em vez de **getDriverLicense** (licença do motorista).
+
+A regra é simples: pense em como a frase seria dita em inglês e preserve essa ordem no código.
 
 ## Síncrono e Assíncrono
 
