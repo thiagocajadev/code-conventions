@@ -540,10 +540,10 @@ latência, segurança e alta performance**.
 // Combinando os exemplos até agora.
 // Array com lista de idades dos candidatos a tirar a CNH.
 const ageList = [17, 18, 20, -5, "vinte"];
-canGetLicenseDriver(ageList);
+canGetDriverLicense(ageList);
 
 // Função que valida uma lista de idades e retorna quem pode dirigir.
-function canGetLicenseDriver(ageList) {
+function canGetDriverLicense(ageList) {
   // Guard clause: sai cedo se não houver dados.
   if (!Array.isArray(ageList) || ageList.length === 0) {
     console.log("Nenhuma idade fornecida.");
@@ -573,9 +573,9 @@ function canGetLicenseDriver(ageList) {
 ```js
 // Mesmo exemplo mais enxuto, com mais elementos no vetor (array).
 const ageList = [17, 18, 20, -5, "vinte", "Thiago", 2];
-canGetLicenseDriver(ageList);
+canGetDriverLicense(ageList);
 
-function canGetLicenseDriver(ageList) {
+function canGetDriverLicense(ageList) {
   if (!Array.isArray(ageList) || ageList.length === 0) {
     return console.log("Nenhuma idade fornecida.");
   }
@@ -612,9 +612,9 @@ const candidatesList = [
   { id: 6, name: "Lucas", age: 2 },
 ];
 
-canGetLicenseDriver(candidatesList);
+canGetDriverLicense(candidatesList);
 
-function canGetLicenseDriver(candidatesList) {
+function canGetDriverLicense(candidatesList) {
   // Guard clause: sai cedo se não houver dados.
   if (!Array.isArray(candidatesList) || candidatesList.length === 0) {
     return console.log("Nenhum candidato fornecido.");
@@ -656,9 +656,9 @@ const candidatesList = [
   { id: 6, name: "Lucas", age: 2 },
 ];
 
-canGetLicenseDriver(candidatesList);
+canGetDriverLicense(candidatesList);
 
-function canGetLicenseDriver(candidatesList) {
+function canGetDriverLicense(candidatesList) {
   if (!Array.isArray(candidatesList) || candidatesList.length === 0) {
     return console.log("Nenhum candidato fornecido.");
   }
@@ -740,10 +740,10 @@ const request = JSON.parse(jsonDocumentRequestBody);
 // };
 
 // Processamento.
-canGetLicenseDriver(request);
+canGetDriverLicense(request);
 
 // Função simulando endpoint da API.
-function canGetLicenseDriver(request) {
+function canGetDriverLicense(request) {
   const { candidates } = request;
 
   if (!Array.isArray(candidates) || candidates.length === 0) {
