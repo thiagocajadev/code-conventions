@@ -6,7 +6,11 @@ de códigos em **JavaScript** e **C#**.
 Uso as duas linguagens no dia a dia em conjunto, então vou aproveitar a ocasião para comparar as
 diferenças e semelhanças entre ambas.
 
-Aqui um pequeno spoiler em **JavaScript**:
+Se você quer um atalho com um guia rápido sobre convenções de nomes, venha por
+[aqui](docs/estilizando-js-csharp-guia-rapido.md).
+
+<details>
+<summary>Aqui um pequeno spoiler em <strong>JavaScript:</strong></summary>
 
 ```js
 // Chamada de método de forma limpa, com a lógica organizada em abstração.
@@ -47,7 +51,13 @@ async function findOneById(id) {
 }
 ```
 
-E o mesmo exemplo de código em **C#**:
+</details>
+<br>
+
+E que tal um spoiler em **C#**?
+
+<details>
+<summary>Confira aqui...</summary>
 
 ```csharp
 // Chamada de método de forma limpa, com a lógica organizada em abstração.
@@ -90,6 +100,9 @@ public async Task<Product> FindOneByIdAsync(Guid id)
   }
 }
 ```
+
+</details>
+<br>
 
 Já contei que eu curto um bolinho 🧁? Nada melhor do que seguir uma receita, **passo a passo** pra
 te "convencer" sobre as minhas convenções.
