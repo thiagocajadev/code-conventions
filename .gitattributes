@@ -1,0 +1,6 @@
+# Ignora markdown da contagem
+*.md linguist-detectable=false
+
+# Conta arquivos de exemplo
+*.js linguist-detectable=true
+*.cs linguist-detectable=true
